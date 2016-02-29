@@ -22,17 +22,19 @@ class TranslatedPolygon extends AbstractPolygon implements
 
 	@Override
 	public IPolygon translate(int x, int y) {
-		return null;
+		xMove = x;
+		yMove = y;
+		return this;
 	}
 
 	@Override
 	public IPolygon rotate(double radians) {
-		return null;
+		return new RotatedPolygon(this, radians);
 	}
 
 	@Override
 	public IPolygon scale(double x, double y) {
-		return null;
+		return new ScaledPolygon(this, x, y);
 	}
 
 	@Override
@@ -42,6 +44,7 @@ class TranslatedPolygon extends AbstractPolygon implements
 		return getPointsWithBase(base);
 	}
 
+	//Translates the point
 	@Override
 	protected void manipulatePoint(Point center, Point p) {
 		p.x += this.xMove;

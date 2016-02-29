@@ -18,17 +18,18 @@ class RotatedPolygon extends AbstractPolygon implements
 
 	@Override
 	public IPolygon translate(int x, int y) {
-		return null;
+		return new TranslatedPolygon(this, x, y);
 	}
 
 	@Override
 	public IPolygon rotate(double radians) {
-		return null;
+		this.radians = radians;
+		return this;
 	}
 
 	@Override
 	public IPolygon scale(double x, double y) {
-		return null;
+		return new ScaledPolygon(this, x, y);
 	}
 
 	@Override
@@ -41,6 +42,7 @@ class RotatedPolygon extends AbstractPolygon implements
 		rotatePoint(center, p, this.radians);
 	}
 
+	//Rotates the point around the centre point
 	private static void rotatePoint(Point center,
 			Point point, double alpha) {
 		double newX = center.x + (point.x - center.x)
